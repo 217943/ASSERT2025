@@ -85,6 +85,16 @@
             padding: 12px 16px;
             margin-bottom: 12px;
         }
+        .banner-container {
+            position: relative;
+        }
+        .logo-overlay {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            max-width: 180px;
+            z-index: 10;
+        }
     </style>
 </head>
 <body>
@@ -113,8 +123,9 @@
     <section id="home" class="banner py-12">
         <div class="container mx-auto">
             <div class="flex flex-col items-center">
-                <div class="w-full mb-8">
+                <div class="w-full mb-8 banner-container">
                     <img src="https://brocku.ca/international/learning/wp-content/uploads/sites/266/chonnam-national-main.jpg" alt="Chonnam National University Campus" class="w-full h-64 object-cover rounded-lg shadow-md">
+                    <img src="https://raw.githubusercontent.com/217943/ASSERT2025/main/홈페이지%20이미지/BS_1.3.2_.png" alt="Chonnam National University Logo" class="logo-overlay">
                 </div>
                 <h1 class="text-4xl md:text-5xl font-bold text-center mb-4 text-gray-800">
                     <span class="blue-highlight">A</span>sian 
