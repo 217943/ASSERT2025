@@ -5,70 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ASSERT 2025 - Asian Students' SEminar and Round Table</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            line-height: 1.6;
             color: #333;
-            background-color: #f9f9f9;
+            line-height: 1.6;
         }
-        .hero-section {
-            background-image: linear-gradient(rgba(0, 0, 32, 0.7), rgba(0, 0, 32, 0.7)), url('https://koreajoongangdaily.joins.com/data/photo/2023/04/20/2435404a-4cf7-4d8f-8500-50818c3be78d.jpg');
-            background-size: cover;
+        .banner-image {
+            height: 400px;
             background-position: center;
+            background-size: cover;
             background-repeat: no-repeat;
         }
-        .theme-color {
-            color: #1a365d;
-        }
-        .theme-bg {
-            background-color: #1a365d;
-        }
-        .secondary-color {
-            color: #4299e1;
-        }
-        .secondary-bg {
-            background-color: #4299e1;
-        }
-        .light-bg {
-            background-color: #e6f0ff;
-        }
-        section {
-            padding: 40px 0;
-        }
-        h2 {
-            font-size: 2rem;
+        .section-heading {
+            border-bottom: 2px solid #1a365d;
+            padding-bottom: 0.5rem;
             margin-bottom: 1.5rem;
-            color: #1a365d;
-            font-weight: bold;
         }
-        h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: #1a365d;
-        }
-        p {
-            margin-bottom: 1rem;
-        }
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        .nav-link {
-            color: #fff;
-            text-decoration: none;
-            padding: 10px 15px;
-            transition: all 0.3s ease;
-            font-weight: 500;
-        }
-        .nav-link:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 4px;
-        }
-        .poster-modal {
+        .popup {
             display: none;
             position: fixed;
             z-index: 1000;
@@ -76,435 +31,392 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
+            background-color: rgba(0,0,0,0.7);
         }
-        .poster-content {
-            background-color: #fefefe;
-            margin: 5% auto;
-            padding: 20px;
-            border-radius: 8px;
-            max-width: 800px;
+        .popup-content {
             position: relative;
+            margin: auto;
+            padding: 20px;
+            max-width: 80%;
+            max-height: 90%;
         }
-        .close-btn {
+        .popup-content img {
+            max-width: 100%;
+            max-height: 90vh;
+            display: block;
+            margin: 0 auto;
+        }
+        .close {
             position: absolute;
-            right: 20px;
-            top: 10px;
-            font-size: 28px;
+            top: 15px;
+            right: 15px;
+            color: white;
+            font-size: 30px;
             font-weight: bold;
             cursor: pointer;
         }
-        .poster-img {
-            width: 100%;
-            height: auto;
-            border-radius: 4px;
-        }
-        .timeline {
+        .nav-link {
             position: relative;
-            padding: 15px 0;
+            display: inline-block;
+            margin-left: 1.5rem;
+            font-weight: 500;
+            color: #1a365d;
+            text-decoration: none;
         }
-        .timeline::before {
+        .nav-link:hover {
+            color: #2c5282;
+        }
+        .nav-link:after {
             content: '';
             position: absolute;
-            width: 2px;
-            background-color: #4299e1;
-            top: 0;
-            bottom: 0;
-            left: 20px;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #2c5282;
+            transition: width 0.3s;
         }
-        .timeline-item {
-            position: relative;
-            margin-bottom: 20px;
-            padding-left: 45px;
-        }
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            background-color: #4299e1;
-            left: 13px;
-            top: 5px;
-        }
-        .schedule-table {
+        .nav-link:hover:after {
             width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
         }
-        .schedule-table th, .schedule-table td {
-            border: 1px solid #ddd;
-            padding: 10px;
-            text-align: left;
+        .schedule-item {
+            border-left: 3px solid #1a365d;
+            padding-left: 1rem;
+            margin-bottom: 1rem;
         }
-        .schedule-table th {
-            background-color: #f2f2f2;
-        }
-        .highlight {
-            background-color: #f0f7ff;
+        @media (max-width: 768px) {
+            .banner-image {
+                height: 200px;
+            }
         }
     </style>
 </head>
-<body>
-    <!-- Poster Modal -->
-    <div id="posterModal" class="poster-modal">
-        <div class="poster-content">
-            <span class="close-btn" id="closeModal">&times;</span>
-            <h2 class="text-center mb-4">ASSERT 2025 Conference Poster</h2>
-            <img src="https://github.com/217943/ASSERT2025/blob/main/%ED%99%88%ED%8E%98%EC%9D%B4%EC%A7%80%20%EC%9D%B4%EB%AF%B8%EC%A7%80/2025%20ASSERT%20poster.jpg" alt="ASSERT 2025 Poster" class="poster-img mb-4">
-            <div class="text-center">
-                <button id="closePosterBtn" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">Close</button>
-            </div>
+<body class="bg-gray-50">
+    <!-- Poster Popup -->
+    <div id="posterPopup" class="popup">
+        <div class="popup-content">
+            <span class="close" onclick="closePopup()">&times;</span>
+            <img src="https://raw.githubusercontent.com/217943/ASSERT2025/main/홈페이지%20이미지/2025_ASSERT_poster.jpg" alt="ASSERT 2025 Poster">
         </div>
     </div>
 
-    <!-- Header Section -->
-    <header class="theme-bg text-white py-4 px-6 sticky top-0 z-50">
-        <div class="container mx-auto flex justify-between items-center">
-            <div>
-                <h1 class="text-2xl font-bold">ASSERT 2025</h1>
-                <p class="text-sm">Asian Students' SEminar and Round Table</p>
+    <!-- Header -->
+    <header class="bg-white shadow-md">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <h1 class="text-2xl font-bold text-blue-900">ASSERT 2025</h1>
             </div>
-            <nav class="flex space-x-1">
-                <a href="#home" class="nav-link text-sm">Home</a>
-                <a href="#about" class="nav-link text-sm">About</a>
-                <a href="#dates" class="nav-link text-sm">Dates</a>
-                <a href="#program" class="nav-link text-sm">Program</a>
-                <a href="#venue" class="nav-link text-sm">Venue</a>
-                <a href="#contact" class="nav-link text-sm">Contact</a>
+            <nav class="hidden md:block">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#dates" class="nav-link">Important Dates</a>
+                <a href="#program" class="nav-link">Program</a>
+                <a href="#venue" class="nav-link">Venue</a>
+                <a href="#contact" class="nav-link">Contact</a>
             </nav>
+            <button class="md:hidden focus:outline-none" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars text-blue-900 text-2xl"></i>
+            </button>
+        </div>
+        <!-- Mobile Menu (Hidden by default) -->
+        <div id="mobileMenu" class="hidden bg-white shadow-lg md:hidden">
+            <div class="container mx-auto px-4 py-2">
+                <a href="#home" class="block py-2 text-blue-900 hover:bg-blue-50">Home</a>
+                <a href="#about" class="block py-2 text-blue-900 hover:bg-blue-50">About</a>
+                <a href="#dates" class="block py-2 text-blue-900 hover:bg-blue-50">Important Dates</a>
+                <a href="#program" class="block py-2 text-blue-900 hover:bg-blue-50">Program</a>
+                <a href="#venue" class="block py-2 text-blue-900 hover:bg-blue-50">Venue</a>
+                <a href="#contact" class="block py-2 text-blue-900 hover:bg-blue-50">Contact</a>
+            </div>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero-section text-white py-20">
-        <div class="container mx-auto text-center">
-            <h1 class="text-4xl md:text-5xl font-bold mb-4">ASSERT 2025</h1>
-            <h2 class="text-2xl md:text-3xl font-semibold mb-6 text-blue-300">Asian Students' SEminar and Round Table</h2>
-            <div class="mb-8">
-                <h3 class="text-xl md:text-2xl font-semibold text-blue-200 mb-2">Transforming Future Education through AI+X Innovation</h3>
-                <p class="text-lg md:text-xl">May 9(Fri) - 11(Sun), 2025</p>
-                <p class="text-lg md:text-xl">Chonnam National University, Gwangju, South Korea</p>
+    <!-- Banner -->
+    <section id="home" class="banner-image w-full bg-cover bg-center" style="background-image: url('https://brocku.ca/international/learning/wp-content/uploads/sites/266/chonnam-national-main.jpg');">
+        <div class="container mx-auto px-4 py-24 flex flex-col items-center justify-center text-center h-full bg-opacity-60 bg-black">
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">ASSERT 2025</h1>
+            <h2 class="text-2xl md:text-3xl font-semibold text-white mb-4">Asian Students' SEminar and Round Table</h2>
+            <p class="text-xl text-white mb-8">May 9-11, 2025 | Chonnam National University, South Korea</p>
+            <div class="bg-white bg-opacity-80 px-6 py-4 rounded-lg">
+                <h3 class="text-2xl font-bold text-blue-900 mb-2">Transforming Future Education through AI+X Innovation</h3>
             </div>
-            <a href="#registration" class="inline-block px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition">Register Now</a>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="py-12 bg-white">
-        <div class="container mx-auto">
-            <h2 class="text-3xl font-bold mb-6 text-center theme-color">About ASSERT</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <!-- About -->
+    <section id="about" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-blue-900 section-heading">About ASSERT</h2>
+            <div class="mt-6">
+                <p class="mb-4">
+                    ASSERT was established in 2012 as an international exchange platform for Asian students majoring in educational technology. The 2025 conference will focus on "Transforming Future Education through AI+X Innovation".
+                </p>
+                <p class="mb-4">
+                    ASSERT 2025 is the Asian Students' SEminar and Round Table. This community is an academic seminar launched in 2012 as an international exchange platform to foster emerging scholars in educational technology from China, Japan, and Korea. Over the past two decades, ASSERT has served as a unique venue where graduate students and early-career researchers can share insights, exchange ideas, and build a vibrant academic community across East Asia.
+                </p>
+                <p>
+                    The conference welcomes research presentations in the field of educational technology, including topics related to performative approaches. The program will feature presentations by students and researchers, along with keynote speeches and workshops to foster academic exchange and collaboration.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Important Dates -->
+    <section id="dates" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-blue-900 section-heading">Important Dates</h2>
+            <div class="mt-6 grid md:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold text-blue-800 mb-2">Submission Deadline</h3>
+                    <p class="text-lg">April 15, 2025</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold text-blue-800 mb-2">Notification of Acceptance</h3>
+                    <p class="text-lg">April 18, 2025</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold text-blue-800 mb-2">Conference Dates</h3>
+                    <p class="text-lg">May 9-11, 2025</p>
+                </div>
+            </div>
+            <div class="mt-8 text-center">
+                <p class="text-lg mb-4">Submit your abstract and paper through our submission form:</p>
+                <a href="https://forms.gle/kdgHnJortJvRjaqk8" class="inline-block bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-6 rounded-lg transition duration-300">
+                    Submission Form
+                </a>
+                <p class="mt-4 text-gray-600">For any questions regarding submission, please contact us at: 2025assert@gmail.com</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Program -->
+    <section id="program" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-blue-900 section-heading">Conference Program</h2>
+            
+            <div class="mt-8">
+                <h3 class="text-2xl font-bold text-blue-800 mb-4">Day 1: May 9, 2025</h3>
+                <div class="space-y-4 mb-8">
+                    <div class="schedule-item">
+                        <p class="text-lg font-semibold">16:00 - Arrival</p>
+                    </div>
+                    <div class="schedule-item">
+                        <p class="text-lg font-semibold">17:00 - 19:00 Welcome Dinner</p>
+                    </div>
+                    <div class="schedule-item">
+                        <p class="text-lg font-semibold">19:00 - Free Time</p>
+                    </div>
+                </div>
+
+                <h3 class="text-2xl font-bold text-blue-800 mb-4">Day 2: May 10, 2025</h3>
+                <div class="space-y-4 mb-8">
+                    <div class="schedule-item">
+                        <p class="text-lg font-semibold">10:00 - 10:20 Opening Ceremony</p>
+                    </div>
+                    <div class="schedule-item">
+                        <p class="text-lg font-semibold">10:20 - 10:30 Break</p>
+                    </div>
+                    <div class="schedule-item">
+                        <p class="text-lg font-semibold">10:30 - 11:30 Keynote</p>
+                    </div>
+                    <div class="schedule-item">
+                        <p class="text-lg font-semibold">11:30 - 13:30 Lunch</p>
+                    </div>
+                    <div class="schedule-item">
+                        <p class="text-lg font-semibold">13:30 - 14:30 Roundtable Session I</p>
+                    </div>
+                    <div class="schedule-item">
+                        <p class="text-lg font-semibold">14:30 - 14:45 Break</p>
+                    </div>
+                    <div class="schedule-item">
+                        <p class="text-lg font-semibold">14:45 - 15:45 Roundtable Session II</p>
+                    </div>
+                    <div class="schedule-item">
+                        <p class="text-lg font-semibold">15:45 - 16:00 Break</p>
+                    </div>
+                    <div class="schedule-item">
+                        <p class="text-lg font-semibold">16:00 - 17:00 Conclusion of Roundtable Discussion & Commendation</p>
+                    </div>
+                    <div class="schedule-item">
+                        <p class="text-lg font-semibold">17:00 - 19:00 Dinner</p>
+                    </div>
+                    <div class="schedule-item">
+                        <p class="text-lg font-semibold">19:00 - Meet up & Networking</p>
+                    </div>
+                </div>
+
+                <h3 class="text-2xl font-bold text-blue-800 mb-4">Day 3: May 11, 2025</h3>
+                <div class="space-y-4">
+                    <div class="schedule-item">
+                        <p class="text-lg font-semibold">08:00 - 10:00 Breakfast</p>
+                    </div>
+                    <div class="schedule-item">
+                        <p class="text-lg font-semibold">10:00 - 11:00 Closing of ASSERT 2025</p>
+                    </div>
+                    <div class="schedule-item">
+                        <p class="text-lg font-semibold">11:15 - Tour (optional)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Venue & Accommodation -->
+    <section id="venue" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-blue-900 section-heading">Venue & Accommodation</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8 mt-6">
                 <div>
-                    <p class="text-lg">ASSERT 2025 is the Asian Students' SEminar and Round Table. This community is an academic seminar launched in 2012 as an international exchange platform to foster emerging scholars in educational technology from China, Japan, and Korea.</p>
-                    <p class="text-lg">Over the past two decades, ASSERT has served as a unique venue where graduate students and early-career researchers can share insights, exchange ideas, and build a vibrant academic community across East Asia.</p>
-                    <p class="text-lg mt-4"><strong>Theme of ASSERT 2025:</strong></p>
-                    <p class="text-xl font-semibold theme-color">"Transforming Future Education through AI+X Innovation"</p>
-                    <p class="text-lg mt-4">We welcome research presentations in the field of educational technology, including topics related to performative approaches. The program will feature presentations by students and researchers, along with keynote speeches and workshops to foster academic exchange and collaboration.</p>
-                </div>
-                <div class="bg-gray-100 p-6 rounded-lg">
-                    <h3 class="text-2xl font-semibold mb-4 theme-color">ASSERT History</h3>
-                    <div class="timeline">
-                        <div class="timeline-item">
-                            <p class="font-semibold">2012</p>
-                            <p>ASSERT was established as an international exchange platform for Asian students majoring in educational engineering.</p>
-                        </div>
-                        <div class="timeline-item">
-                            <p class="font-semibold">2013-2019</p>
-                            <p>Annual conferences were held in rotation among universities in China, Japan, and Korea.</p>
-                        </div>
-                        <div class="timeline-item">
-                            <p class="font-semibold">2020-2022</p>
-                            <p>Virtual conferences during the global pandemic period.</p>
-                        </div>
-                        <div class="timeline-item">
-                            <p class="font-semibold">2023-2024</p>
-                            <p>Return to in-person conferences with expanded participation.</p>
-                        </div>
-                        <div class="timeline-item">
-                            <p class="font-semibold">2025</p>
-                            <p>ASSERT hosted by Chonnam National University in South Korea, focusing on AI+X Innovation in education.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Key Dates Section -->
-    <section id="dates" class="py-12 light-bg">
-        <div class="container mx-auto">
-            <h2 class="text-3xl font-bold mb-6 text-center theme-color">Important Dates</h2>
-            <div class="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-md">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div class="border-l-4 border-blue-500 pl-4 py-2">
-                        <p class="font-semibold text-xl">Submission Deadline</p>
-                        <p>April 15, 2025</p>
-                    </div>
-                    <div class="border-l-4 border-blue-500 pl-4 py-2">
-                        <p class="font-semibold text-xl">Notification of Acceptance</p>
-                        <p>April 18, 2025</p>
-                    </div>
-                    <div class="border-l-4 border-blue-500 pl-4 py-2">
-                        <p class="font-semibold text-xl">Conference Dates</p>
-                        <p>May 9-11, 2025</p>
-                    </div>
-                    <div class="border-l-4 border-blue-500 pl-4 py-2">
-                        <p class="font-semibold text-xl">Registration Fee</p>
-                        <p>Free (No registration fee)</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Program Section -->
-    <section id="program" class="py-12 bg-white">
-        <div class="container mx-auto">
-            <h2 class="text-3xl font-bold mb-6 text-center theme-color">Conference Program</h2>
-            
-            <!-- Day 1 -->
-            <div class="mb-10">
-                <h3 class="text-2xl font-semibold mb-4 theme-color">Day 1: Friday, May 9th, 2025</h3>
-                <table class="schedule-table">
-                    <tr>
-                        <th width="30%">Time</th>
-                        <th width="70%">Activity</th>
-                    </tr>
-                    <tr>
-                        <td>16:00 onwards</td>
-                        <td>Arrival</td>
-                    </tr>
-                    <tr class="highlight">
-                        <td>17:00 - 19:00</td>
-                        <td>Welcome Dinner</td>
-                    </tr>
-                    <tr>
-                        <td>19:00 onwards</td>
-                        <td>Free Time</td>
-                    </tr>
-                </table>
-            </div>
-            
-            <!-- Day 2 -->
-            <div class="mb-10">
-                <h3 class="text-2xl font-semibold mb-4 theme-color">Day 2: Saturday, May 10th, 2025</h3>
-                <table class="schedule-table">
-                    <tr>
-                        <th width="30%">Time</th>
-                        <th width="70%">Activity</th>
-                    </tr>
-                    <tr class="highlight">
-                        <td>10:00 - 10:20</td>
-                        <td>Opening Ceremony</td>
-                    </tr>
-                    <tr>
-                        <td>10:20 - 10:30</td>
-                        <td>Break</td>
-                    </tr>
-                    <tr class="highlight">
-                        <td>10:30 - 11:30</td>
-                        <td>Keynote</td>
-                    </tr>
-                    <tr>
-                        <td>11:30 - 13:30</td>
-                        <td>Lunch</td>
-                    </tr>
-                    <tr class="highlight">
-                        <td>13:30 - 14:30</td>
-                        <td>Roundtable Session Ⅰ</td>
-                    </tr>
-                    <tr>
-                        <td>14:30 - 14:45</td>
-                        <td>Break</td>
-                    </tr>
-                    <tr class="highlight">
-                        <td>14:45 - 15:45</td>
-                        <td>Roundtable Session Ⅱ</td>
-                    </tr>
-                    <tr>
-                        <td>15:45 - 16:00</td>
-                        <td>Break</td>
-                    </tr>
-                    <tr class="highlight">
-                        <td>16:00 - 17:00</td>
-                        <td>Conclusion of Roundtable Discussion & Commendation</td>
-                    </tr>
-                    <tr>
-                        <td>17:00 - 19:00</td>
-                        <td>Dinner</td>
-                    </tr>
-                    <tr>
-                        <td>19:00 onwards</td>
-                        <td>Meet up & Networking</td>
-                    </tr>
-                </table>
-            </div>
-            
-            <!-- Day 3 -->
-            <div>
-                <h3 class="text-2xl font-semibold mb-4 theme-color">Day 3: Sunday, May 11th, 2025</h3>
-                <table class="schedule-table">
-                    <tr>
-                        <th width="30%">Time</th>
-                        <th width="70%">Activity</th>
-                    </tr>
-                    <tr>
-                        <td>08:00 - 10:00</td>
-                        <td>Breakfast</td>
-                    </tr>
-                    <tr class="highlight">
-                        <td>10:00 - 11:00</td>
-                        <td>Closing of ASSERT 2025</td>
-                    </tr>
-                    <tr>
-                        <td>11:15 onwards</td>
-                        <td>Tour (optional)</td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-    </section>
-
-    <!-- Registration Section -->
-    <section id="registration" class="py-12 light-bg">
-        <div class="container mx-auto">
-            <h2 class="text-3xl font-bold mb-6 text-center theme-color">Registration</h2>
-            <div class="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-md">
-                <div class="mb-6">
-                    <h3 class="text-xl font-semibold mb-2">Registration Information</h3>
-                    <p><strong>Registration Fee:</strong> Free (0 USD)</p>
-                    <p>Registration includes access to all sessions, conference materials, and meals during the conference.</p>
-                </div>
-                <div class="mb-6">
-                    <h3 class="text-xl font-semibold mb-2">Submission Guidelines</h3>
-                    <p>To participate, please submit your abstract (300-500 words) by April 15, 2025.</p>
-                    <p>Notification of acceptance will be sent by April 18, 2025.</p>
-                    <p>Please send your abstract to <a href="mailto:assert2025@jnu.ac.kr" class="text-blue-600 hover:underline">assert2025@jnu.ac.kr</a></p>
-                </div>
-                <div class="text-center mt-6">
-                    <a href="mailto:assert2025@jnu.ac.kr" class="inline-block px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition">Submit Abstract</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Venue & Accommodation Section -->
-    <section id="venue" class="py-12 bg-white">
-        <div class="container mx-auto">
-            <h2 class="text-3xl font-bold mb-6 text-center theme-color">Venue & Accommodation</h2>
-            
-            <!-- Venue -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
-                <div>
-                    <h3 class="text-2xl font-semibold mb-4 theme-color">Conference Venue</h3>
-                    <p class="text-lg mb-2"><strong>Education Convergence Building</strong></p>
-                    <p class="mb-2">Chonnam National University</p>
-                    <p class="mb-2">77 Yongbong-ro, Buk-gu</p>
-                    <p class="mb-2">Gwangju, South Korea</p>
+                    <h3 class="text-2xl font-bold text-blue-800 mb-4">Conference Venue</h3>
+                    <p class="mb-4">
+                        <strong>Education Convergence Building, Chonnam National University</strong><br>
+                        77 Yongbong-ro, Buk-gu, Gwangju, 61186, South Korea
+                    </p>
+                    <img src="https://raw.githubusercontent.com/217943/ASSERT2025/main/홈페이지%20이미지/venue.jpg" alt="Education Convergence Building" class="w-full rounded-lg shadow-md">
                     
-                    <h3 class="text-2xl font-semibold mb-4 mt-6 theme-color">Transportation</h3>
-                    <p class="mb-2"><strong>From Incheon International Airport:</strong></p>
-                    <p class="mb-2">Limousine bus is available from Incheon International Airport to Gwangju Metropolitan City.</p>
-                    <p class="mb-2">Travel time is approximately 3.5-4 hours.</p>
-                    <p class="mb-2">Alternatively, you can take a domestic flight from Incheon or Gimpo Airport to Gwangju Airport (flight time: approximately 1 hour).</p>
+                    <h3 class="text-2xl font-bold text-blue-800 mb-4 mt-8">Transportation</h3>
+                    <p class="mb-4">
+                        <strong>From Incheon International Airport to Gwangju:</strong><br>
+                        Limousine bus service is available from Incheon International Airport to Gwangju Metropolitan City.
+                    </p>
+                    <p>
+                        The journey takes approximately 3-4 hours depending on traffic conditions. Buses depart regularly throughout the day.
+                    </p>
                 </div>
+                
                 <div>
-                    <img src="https://usac.edu/images/content/programs/korea/gwangju/university/cnu-campus.jpg" alt="Chonnam National University" class="w-full h-auto rounded-lg shadow-md">
-                </div>
-            </div>
-            
-            <!-- Accommodation -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div>
-                    <img src="https://res.klook.com/klook-hotel/image/upload/fl_lossy.progressive,c_fill,f_auto,w_750,q_85/trip/0200b120009669j1a73EF_R_550_412_R5.jpg" alt="H1 Hotel" class="w-full h-auto rounded-lg shadow-md">
-                </div>
-                <div>
-                    <h3 class="text-2xl font-semibold mb-4 theme-color">Recommended Accommodation</h3>
-                    <p class="text-lg mb-2"><strong>H1 Hotel</strong></p>
-                    <p class="mb-2">H1 Hotel is conveniently located near Chonnam National University, offering comfortable accommodations for conference attendees.</p>
-                    <p class="mb-4">The hotel features modern amenities, including free Wi-Fi, business center, fitness center, and 24-hour reception.</p>
-                    <p class="mb-2"><strong>Address:</strong> 106-10 Daeja-ro, Buk-gu, Gwangju, South Korea</p>
-                    <p class="mb-2"><strong>Distance from venue:</strong> Approximately 2 km</p>
-                    <p class="mb-4"><strong>Website:</strong> <a href="http://www.h1hotel.co.kr/" target="_blank" class="text-blue-600 hover:underline">www.h1hotel.co.kr</a></p>
-                    <a href="http://www.h1hotel.co.kr/" target="_blank" class="inline-block px-4 py-2 bg-blue-600 text-white rounded font-semibold hover:bg-blue-700 transition">Book Accommodation</a>
+                    <h3 class="text-2xl font-bold text-blue-800 mb-4">Recommended Accommodation</h3>
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h4 class="text-xl font-semibold text-blue-700 mb-2">H1 Hotel</h4>
+                        <p class="mb-4">
+                            H1 Hotel is conveniently located near Chonnam National University and offers comfortable accommodations with modern amenities.
+                        </p>
+                        <p class="mb-4">
+                            <strong>Address:</strong> 10-6, Daeja-ro 106beon-gil, Buk-gu, Gwangju, South Korea
+                        </p>
+                        <p class="mb-4">
+                            <strong>Features:</strong>
+                            <ul class="list-disc ml-6 mt-2">
+                                <li>Free Wi-Fi</li>
+                                <li>Business Center</li>
+                                <li>Fitness Center</li>
+                                <li>24-hour Reception</li>
+                                <li>Free Parking</li>
+                            </ul>
+                        </p>
+                        <p>
+                            <a href="http://www.h1hotel.co.kr/" target="_blank" class="text-blue-600 hover:underline">Visit Hotel Website</a>
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="py-12 light-bg">
-        <div class="container mx-auto">
-            <h2 class="text-3xl font-bold mb-6 text-center theme-color">Contact Information</h2>
-            <div class="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-md">
-                <div class="mb-6">
-                    <h3 class="text-xl font-semibold mb-4">Conference Chair</h3>
-                    <p><strong>Professor Jeeheon Ryu</strong></p>
-                    <p>Chonnam National University</p>
-                    <p>Email: <a href="mailto:assert2025@jnu.ac.kr" class="text-blue-600 hover:underline">assert2025@jnu.ac.kr</a></p>
-                </div>
+    <!-- Registration -->
+    <section id="registration" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-blue-900 section-heading">Registration</h2>
+            <div class="mt-6">
+                <p class="mb-4">
+                    Registration for ASSERT 2025 is now open. The registration fee has been waived for all participants.
+                </p>
+                <p class="mb-4">
+                    To participate in the conference, please submit your abstract through our submission form and register your attendance by contacting us at <a href="mailto:2025assert@gmail.com" class="text-blue-600 hover:underline">2025assert@gmail.com</a>.
+                </p>
+                <p>
+                    <strong>Registration Fee:</strong> $0 (Free for all participants)
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-blue-900 section-heading">Contact Information</h2>
+            <div class="mt-6 grid md:grid-cols-2 gap-8">
                 <div>
-                    <h3 class="text-xl font-semibold mb-4">Organizing Committee</h3>
-                    <p>For inquiries about registration, accommodation, or the conference program, please contact:</p>
-                    <p>Email: <a href="mailto:assert2025@jnu.ac.kr" class="text-blue-600 hover:underline">assert2025@jnu.ac.kr</a></p>
+                    <h3 class="text-2xl font-bold text-blue-800 mb-4">Conference Chair</h3>
+                    <p class="mb-4">
+                        <strong>Professor Jeeheon Ryu</strong><br>
+                        Chonnam National University<br>
+                        Gwangju, South Korea
+                    </p>
+                    
+                    <h3 class="text-2xl font-bold text-blue-800 mb-4 mt-8">General Inquiries</h3>
+                    <p class="mb-4">
+                        For any questions regarding the conference, please contact us at:
+                    </p>
+                    <p class="mb-4">
+                        <a href="mailto:2025assert@gmail.com" class="text-blue-600 hover:underline">2025assert@gmail.com</a>
+                    </p>
+                </div>
+                
+                <div>
+                    <h3 class="text-2xl font-bold text-blue-800 mb-4">Submission</h3>
+                    <p class="mb-4">
+                        Submit your abstract and paper through our submission form:
+                    </p>
+                    <p class="mb-4">
+                        <a href="https://forms.gle/kdgHnJortJvRjaqk8" class="text-blue-600 hover:underline">Submission Form Link</a>
+                    </p>
+                    
+                    <h3 class="text-2xl font-bold text-blue-800 mb-4 mt-8">Key Dates</h3>
+                    <p class="mb-2">
+                        <strong>Submission Deadline:</strong> April 15, 2025
+                    </p>
+                    <p class="mb-2">
+                        <strong>Notification of Acceptance:</strong> April 18, 2025
+                    </p>
+                    <p class="mb-2">
+                        <strong>Conference Dates:</strong> May 9-11, 2025
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="theme-bg text-white py-8">
-        <div class="container mx-auto text-center">
+    <footer class="bg-blue-900 text-white py-8">
+        <div class="container mx-auto px-4 text-center">
             <h2 class="text-2xl font-bold mb-4">ASSERT 2025</h2>
             <p class="mb-4">Asian Students' SEminar and Round Table</p>
-            <p>May 9-11, 2025 | Chonnam National University, Gwangju, South Korea</p>
-            <div class="mt-6">
-                <p>&copy; 2025 ASSERT. All Rights Reserved.</p>
-            </div>
+            <p class="mb-4">May 9-11, 2025 | Chonnam National University, Gwangju, South Korea</p>
+            <p>&copy; 2024 ASSERT Conference. All rights reserved.</p>
         </div>
     </footer>
 
     <script>
-        // Poster popup functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            var modal = document.getElementById('posterModal');
-            var closeBtn = document.getElementById('closeModal');
-            var closePosterBtn = document.getElementById('closePosterBtn');
-            
-            // Show modal when page loads
+        // Show the poster popup when the page loads
+        window.onload = function() {
             setTimeout(function() {
-                modal.style.display = 'block';
-            }, 1000);
-            
-            // Close modal when clicking the X
-            closeBtn.onclick = function() {
-                modal.style.display = 'none';
+                document.getElementById('posterPopup').style.display = 'block';
+            }, 500);
+        }
+
+        // Close the poster popup
+        function closePopup() {
+            document.getElementById('posterPopup').style.display = 'none';
+        }
+
+        // Close the popup when clicking outside the image
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('posterPopup')) {
+                closePopup();
             }
-            
-            // Close modal when clicking the Close button
-            closePosterBtn.onclick = function() {
-                modal.style.display = 'none';
+        }
+
+        // Toggle mobile menu
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+            } else {
+                menu.classList.add('hidden');
             }
-            
-            // Close modal when clicking outside the content
-            window.onclick = function(event) {
-                if (event.target == modal) {
-                    modal.style.display = 'none';
-                }
-            }
-            
-            // Smooth scrolling for navigation links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    
-                    document.querySelector(this.getAttribute('href')).scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                });
-            });
-        });
+        }
     </script>
 </body>
 </html>
